@@ -1,11 +1,11 @@
 /**
- * Chaged all var for lets in variable creations
  * Ten a consideración que el programa debe hacer lo siguiente: 
  * - Esta aplicación crea una lista de invitados.
  * - Los invitados pueden ser agregados a través de un formulario.
  * - Se pueden borrar invitados de la lista usando el botón.
  */
 
+/* Chaged all var for lets in variable creations */
 let formulario = document.querySelector("form") //no necesita el selector de clase #, la clase se llama formulario
 
 formulario.onsubmit = function(e) {
@@ -40,13 +40,6 @@ formulario.onsubmit = function(e) {
   }
 }
 
-/* let botonBorrar = document.createElement("button")
-botonBorrar.textContent = "Eliminar invitado"
-botonBorrar.id = "boton-borrar"
-let corteLinea = document.createElement("br")
-document.body.appendChild(corteLinea)
-document.body.appendChild(botonBorrar); */
-
 function agregarInvitado(nombre, edad, nacionalidad) {
 
   console.log("agregar invitado: " + nombre + edad + nacionalidad);
@@ -65,13 +58,11 @@ function agregarInvitado(nombre, edad, nacionalidad) {
   }
   console.log("agregar invitado: " + nombre + edad + nacionalidad);
 
-  crearElemento("Nombre", nombre)
-  /* crearElemento("Edad", edad)
-  crearElemento("Nacionalidad", nacionalidad) */
+  crearElemento(nombre, edad, nacionalidad)
 
 }
 
-function crearElemento(descripcion, valor) {
+function crearElemento(nombre, edad, nacionalidad) {
   let lista = document.getElementById("lista-de-invitados")
   let elementoLista = document.createElement("li")  //list element must be li
   elementoLista.classList.add("elemento-lista")
@@ -80,32 +71,22 @@ function crearElemento(descripcion, valor) {
   let spanNombre = document.createElement("span")
   let inputNombre = document.createElement("input")
   let espacio = document.createElement("br")
-  spanNombre.textContent = descripcion + ": "
-  inputNombre.value = valor
+
+  spanNombre.textContent = `Nombre: ${nombre} Edad: ${edad} Nacionalidad: ${nacionalidad}`
+  inputNombre.value = nombre
   elementoLista.appendChild(spanNombre)
-  elementoLista.appendChild(inputNombre)
+  //elementoLista.appendChild(inputNombre)
   elementoLista.appendChild(espacio)
 
   let botonBorrar = document.createElement("button")
-botonBorrar.textContent = "Eliminar invitado"
-botonBorrar.id = "boton-borrar"
-let corteLinea = document.createElement("br")
-elementoLista.appendChild(corteLinea)
-elementoLista.appendChild(botonBorrar);
+  botonBorrar.textContent = "Eliminar invitado"
+  botonBorrar.id = "boton-borrar"
+  elementoLista.appendChild(espacio)
+  elementoLista.appendChild(botonBorrar);
+  botonBorrar.onclick = function() {
+  // this.parentNode.style.display = 'none';
+    botonBorrar.parentNode.remove()
+  }
 }
 
 /* Removed repeated code */
-
-
-/* let botonBorrar = document.createElement("button")
-botonBorrar.textContent = "Eliminar invitado"
-botonBorrar.id = "boton-borrar"
-let corteLinea = document.createElement("br")
-elementoLista.appendChild(corteLinea)
-elementoLista.appendChild(botonBorrar); */
-
-botonBorrar.onclick = function() {
-// this.parentNode.style.display = 'none';
-  //let lista = document.getElementById("lista-de-invitados")
-  botonBorrar.parentNode.remove()
-}
